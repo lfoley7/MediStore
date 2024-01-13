@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { React, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import medistoreLogo from './medistore-logo.svg';
+import MSNavbar from './msnavbar/MSNavbar';
+import Medications from './medications/Medications';
+import Analytics from './analytics/Analytics';
+import About from './about/About';
+import MeetTheTeam from './meettheteam/MeetTheTeam';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MSNavbar />
+      <Routes>
+        <Route path='/medications' element={<Medications />} />
+        <Route path='/analytics' element={<Analytics />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/meettheteam' element={<MeetTheTeam />} />
+      </Routes>
     </div>
   );
 }
