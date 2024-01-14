@@ -1,3 +1,4 @@
+// MedicationFrequencyChart.jsx
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getColors } from '../helperfunctions/getColors';
@@ -48,6 +49,7 @@ const MedicationFrequencyChart = () => {
                 font: {
                     size: 18,
                     weight: 'bold',
+                    family: 'Poppins, sans-serif', // Add Poppins font family
                 },
             },
             legend: {
@@ -62,6 +64,7 @@ const MedicationFrequencyChart = () => {
                     font: {
                         size: 14,
                         weight: 'bold',
+                        family: 'Poppins, sans-serif', // Add Poppins font family
                     },
                 },
                 grid: {
@@ -75,6 +78,7 @@ const MedicationFrequencyChart = () => {
                     font: {
                         size: 14,
                         weight: 'bold',
+                        family: 'Poppins, sans-serif', // Add Poppins font family
                     },
                 },
             },

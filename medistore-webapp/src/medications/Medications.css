@@ -1,0 +1,20 @@
+/* Medications.css */
+.medications-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.medications-table {
+    width: 90%;
+}
+
+.calendar-container {
+    width: 90%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 35rem;
+}

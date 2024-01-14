@@ -24,12 +24,6 @@ const MedicationAccuracyChart = () => {
                     return label + ': ' + value;
                 }
             },
-            titleFont: {
-                family: 'Poppins, sans-serif'
-            },
-            bodyFont: {
-                family: 'Poppins, sans-serif'
-            }
         },
         plugins: {
             title: {
@@ -39,6 +33,7 @@ const MedicationAccuracyChart = () => {
                 font: {
                     size: 18,
                     weight: 'bold',
+                    family: 'Poppins, sans-serif', // Add Poppins font family
                 },
             },
             datalabels: {
@@ -46,7 +41,8 @@ const MedicationAccuracyChart = () => {
                 color: 'white',
                 font: {
                     weight: 'bold',
-                    size: 14,
+                    size: 16,
+                    family: 'Poppins, sans-serif', // Add Poppins font family
                 },
                 formatter: (value, context) => {
                     return context.chart.data.labels[context.dataIndex];
@@ -58,8 +54,8 @@ const MedicationAccuracyChart = () => {
                     boxWidth: 13,
                     boxHeight: 13,
                     font: {
-                        family: 'Poppins, sans-serif',
-                        size: 10
+                        size: 10,
+                        family: 'Poppins, sans-serif', // Add Poppins font family
                     }
                 },
             },
@@ -67,7 +63,7 @@ const MedicationAccuracyChart = () => {
         cutout: '60%',
     };
 
-    return <Doughnut data={data} plugins={[ChartDataLabels]} options={options} style={{ padding: "0 2vw 1rem" }} />
+    return <Doughnut data={data} plugins={[ChartDataLabels]} options={options} style={{ padding: "0 2vw 1rem" }} />;
 };
 
 export default MedicationAccuracyChart;

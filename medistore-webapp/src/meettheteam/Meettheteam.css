@@ -1,0 +1,11 @@
+.card:hover {
+    box-shadow: 0rem 0.1rem 0.5rem rgb(0 0 0 / 20%);
+}
+
+.card-text {
+    margin-bottom: .5rem !important;
+}
+
+.btn-light {
+    margin-top: .5rem !important;
+}

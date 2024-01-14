@@ -34,6 +34,7 @@ const PrescriptionTimelineChart = () => {
       backgroundColor: backgroundColors,
       fill: false,
       stepped: 'before',
+      pointRadius: 4,
     })),
   };
 

@@ -8,7 +8,8 @@ html {
 
 .App {
   text-align: center;
-  background-color: rgb(190,195,200);
+  background-color: rgb(190, 195, 200);
+  min-height: 100vh;
 }
 
 .App-logo {

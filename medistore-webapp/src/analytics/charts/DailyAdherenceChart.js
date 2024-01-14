@@ -1,9 +1,10 @@
+// DailyAdherenceChart.jsx
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getColors } from '../helperfunctions/getColors';
 import 'chartjs-adapter-moment';
 
-const WeeklyAdherenceChart = () => {
+const DailyAdherenceChart = () => {
     const data = {
         time: [
             'Sunday',
@@ -45,6 +46,7 @@ const WeeklyAdherenceChart = () => {
                 font: {
                     size: 18,
                     weight: 'bold',
+                    family: 'Poppins, sans-serif', // Add Poppins font family
                 },
             },
         },
@@ -56,6 +58,7 @@ const WeeklyAdherenceChart = () => {
                     font: {
                         size: 14,
                         weight: 'bold',
+                        family: 'Poppins, sans-serif', // Add Poppins font family
                     },
                 },
                 grid: {
@@ -69,6 +72,7 @@ const WeeklyAdherenceChart = () => {
                     font: {
                         size: 14,
                         weight: 'bold',
+                        family: 'Poppins, sans-serif', // Add Poppins font family
                     },
                 },
                 ticks: {
@@ -83,4 +87,4 @@ const WeeklyAdherenceChart = () => {
     return <Bar data={chartData} options={options} />;
 }
 
-export default WeeklyAdherenceChart;
+export default DailyAdherenceChart;
