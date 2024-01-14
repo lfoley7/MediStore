@@ -7,14 +7,14 @@ const TeamPage = () => {
         {
             name: 'Cam Wian',
             major: 'Junior RBE',
-            role: 'Head Manufacturer',
+            role: 'Gantry Development Head',
             linkedin: 'https://www.linkedin.com/in/cameron-wian-34683622b/',
             imageUrl: '/cam-profile.png',
         },
         {
             name: 'Sam Markwick',
             major: 'Junior RBE',
-            role: 'Lead Robot Technician',
+            role: 'Computer Solutions Expert',
             linkedin: 'https://www.linkedin.com/in/samuel-markwick-313511224/',
             imageUrl: '/sam-profile.jpg',
         },
@@ -28,7 +28,7 @@ const TeamPage = () => {
         {
             name: 'Josh Barney',
             major: 'Senior ME',
-            role: 'Assistant Manufacturer',
+            role: 'Assistant Technician',
             linkedin: 'https://www.linkedin.com/in/joshua-barney-033b64209/',
             imageUrl: 'josh-profile.png',
         },
