@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import axios from 'axios';
 
 const MedicationAccuracyChart = () => {
+    const [accuracyData, setAccuracyData] = useState({ on_time: 0, late: 0, missed: 0 });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/api/getAccuracy');
+                setAccuracyData(response.data[0]);
+            } catch (error) {
+                console.error('Error fetching accuracy data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const data = {
         labels: ['On Time', 'Late', 'Missed'],
         datasets: [
             {
-                data: [70, 20, 10], // Adjust values based on your data
+                data: [accuracyData.on_time_count, accuracyData.late_count, accuracyData.missed_count],
                 backgroundColor: ['rgb(15, 130, 40)', 'rgb(255, 200, 0)', 'rgb(170, 20, 45)'],
             },
         ],
@@ -22,7 +38,7 @@ const MedicationAccuracyChart = () => {
                     let label = data.labels[tooltipItem.index];
                     let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
                     return label + ': ' + value;
-                }
+                },
             },
         },
         plugins: {
@@ -33,7 +49,7 @@ const MedicationAccuracyChart = () => {
                 font: {
                     size: 18,
                     weight: 'bold',
-                    family: 'Poppins, sans-serif', // Add Poppins font family
+                    family: 'Poppins, sans-serif',
                 },
             },
             datalabels: {
@@ -42,7 +58,7 @@ const MedicationAccuracyChart = () => {
                 font: {
                     weight: 'bold',
                     size: 16,
-                    family: 'Poppins, sans-serif', // Add Poppins font family
+                    family: 'Poppins, sans-serif',
                 },
                 formatter: (value, context) => {
                     return context.chart.data.labels[context.dataIndex];
@@ -55,8 +71,8 @@ const MedicationAccuracyChart = () => {
                     boxHeight: 13,
                     font: {
                         size: 10,
-                        family: 'Poppins, sans-serif', // Add Poppins font family
-                    }
+                        family: 'Poppins, sans-serif',
+                    },
                 },
             },
         },

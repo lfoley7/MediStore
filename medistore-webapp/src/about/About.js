@@ -1,44 +1,30 @@
-import React from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 
-const MyCalendar = () => {
-  const localizer = momentLocalizer(moment);
+const instance = axios.create({
+  baseURL: 'https://iggshnplye.execute-api.us-east-2.amazonaws.com/Initial/'
+});
 
-  const events = [
-    {
-      title: 'Event 1',
-      start: new Date(2022, 0, 1, 10, 0),
-      end: new Date(2022, 0, 1, 12, 0),
-    },
-    {
-      title: 'Event 2',
-      start: new Date(2022, 0, 2, 14, 0),
-      end: new Date(2022, 0, 2, 16, 0),
-    },
-    // Add more events as needed
-  ];
+const PrescriptionComponent = () => {
 
-  const calendarStyle = {
-    background: 'white', // Set the background color to white
-    borderRadius: '8px', // Optional: Add rounded corners
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', // Optional: Add a shadow
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/getPrescriptions');
+        // Handle response data
+        console.log(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div style={{ height: '500px', ...calendarStyle }}>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        views={['month', 'week', 'day']}
-        defaultView="week"
-        defaultDate={new Date(2022, 0, 1)}
-      />
+    <div>
     </div>
   );
 };
 
-export default MyCalendar;
+export default PrescriptionComponent;

@@ -1,11 +1,11 @@
-// DailyAdherenceChart.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getColors } from '../helperfunctions/getColors';
 import 'chartjs-adapter-moment';
+import axios from 'axios';
 
 const DailyAdherenceChart = () => {
-    const data = {
+    const [accuracyData, setAccuracyData] = useState({
         time: [
             'Sunday',
             'Monday',
@@ -15,22 +15,53 @@ const DailyAdherenceChart = () => {
             'Friday',
             'Saturday',
         ],
-        datasets: [
-            {
-                accuracy: [80, 90, 85, 75, 95, 92, 88], // Replace with your actual accuracy data
-            },
-            {
-                accuracy: [70, 85, 80, 78, 92, 89, 86], // Replace with your actual accuracy data
-            },
-        ],
+        datasets: [],
+    });
+
+    useEffect(() => {
+        const fetchAccuracyData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/api/getAccuracyByDay');
+                const formattedData = formatAccuracyData(response.data);
+                setAccuracyData(formattedData);
+            } catch (error) {
+                console.error('Error fetching accuracy data:', error);
+            }
+        };
+
+        fetchAccuracyData();
+    }, []);
+
+    const formatAccuracyData = (data) => {
+        const uniqueMedications = [...new Set(data.map(item => item.medication_name))];
+        const datasets = uniqueMedications.map(medication => {
+            const accuracyArray = Array.from({ length: 7 }).fill(null);
+            data
+                .filter(item => item.medication_name === medication)
+                .forEach(item => {
+                    const index = accuracyData.time.indexOf(item.day_of_week);
+                    if (index !== -1) {
+                        accuracyArray[index] = parseFloat(item.accuracy_percentage);
+                    }
+                });
+            return {
+                label: medication,
+                accuracy: accuracyArray,
+            };
+        });
+
+        return {
+            time: accuracyData.time,
+            datasets,
+        };
     };
 
-    const backgroundColors = getColors(data.datasets, [180, 127, 127], [225, 106, 106], 1);
+    const backgroundColors = getColors(accuracyData.datasets, [180, 127, 127], [225, 106, 106], 1);
 
     const chartData = {
-        labels: data.time,
-        datasets: data.datasets.map((medication, index) => ({
-            label: `Medication ${index + 1}`,
+        labels: accuracyData.time,
+        datasets: accuracyData.datasets.map((medication, index) => ({
+            label: medication.label,
             data: medication.accuracy,
             backgroundColor: backgroundColors[index],
         })),
@@ -85,6 +116,6 @@ const DailyAdherenceChart = () => {
     };
 
     return <Bar data={chartData} options={options} />;
-}
+};
 
 export default DailyAdherenceChart;

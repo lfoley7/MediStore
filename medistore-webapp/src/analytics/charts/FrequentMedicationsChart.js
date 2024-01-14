@@ -1,42 +1,41 @@
 // MedicationFrequencyChart.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { getColors } from '../helperfunctions/getColors';
 import 'chartjs-adapter-moment';
+import axios from 'axios';
 
 const MedicationFrequencyChart = () => {
-    const data = {
-        medications: ['Medication A', 'Medication B', 'Medication C', 'Medication D'],
-        datasets: [
-            {
-                timesTaken: [15, 20, 10, 25], // Replace with your actual data
-            },
-        ],
-    };
+    const [medicationData, setMedicationData] = useState([]);
 
-    // Calculate the total times taken for each medication
-    const totalTimesTaken = data.medications.map((medication, index) => ({
-        medication,
-        total: data.datasets[0].timesTaken[index],
-    }));
+    useEffect(() => {
+        const fetchMedicationData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/api/getFrequency');
+                setMedicationData(response.data);
+            } catch (error) {
+                console.error('Error fetching medication frequency data:', error);
+            }
+        };
 
-    // Sort the medications based on total times taken in descending order
-    const sortedMedications = totalTimesTaken.sort((a, b) => b.total - a.total);
+        fetchMedicationData();
+    }, []);
 
-    // Extract the sorted medication names and times taken
-    const sortedMedicationNames = sortedMedications.map((medication) => medication.medication);
-    const sortedTimesTaken = sortedMedications.map((medication) => medication.total);
+    // Extract the medication names and times taken
+    const medicationNames = medicationData.map((medication) => medication.medication_name);
+    const timesTaken = medicationData.map((medication) => medication.taken_count);
 
     // Use getColors to generate different colors for each bar
-    const backgroundColors = getColors(sortedTimesTaken, [180, 127, 127], [225, 106, 106], 1);
+    const backgroundColors = getColors(timesTaken, [180, 127, 127], [225, 106, 106], 1);
 
     const chartData = {
-        labels: sortedMedicationNames,
-        datasets: data.datasets.map((medication, index) => ({
-            label: `Medication ${index + 1}`,
-            data: sortedTimesTaken,
-            backgroundColor: backgroundColors,
-        })),
+        labels: medicationNames,
+        datasets: [
+            {
+                data: timesTaken,
+                backgroundColor: backgroundColors,
+            },
+        ],
     };
 
     const options = {
@@ -53,8 +52,8 @@ const MedicationFrequencyChart = () => {
                 },
             },
             legend: {
-                display: false
-            }
+                display: false,
+            },
         },
         scales: {
             x: {

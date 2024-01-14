@@ -9,3 +9,32 @@
 .btn-light {
     margin-top: .5rem !important;
 }
+
+.team-member-card {
+    width: 20rem;
+    margin: 1rem;
+    margin-top: 2rem;
+    background-color: rgb(43, 48, 53);
+    color: white;
+    border: 1px solid black;
+}
+
+.card-image {
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.card-image img {
+    border-radius: 50%;
+    width: 18rem;
+    margin-top: 1rem;
+    border: 1px solid black;
+    width: 18rem;
+    height: 18rem;
+    object-fit: cover;
+    margin-left: 1rem;
+}
+
+.card-title {
+    font-weight: bold;
+}

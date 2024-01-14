@@ -1,7 +1,6 @@
-// TeamPage.js
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import './MeetTheTeam.css'
+import './MeetTheTeam.css';
 
 const TeamPage = () => {
     const teamMembers = [
@@ -33,16 +32,17 @@ const TeamPage = () => {
             linkedin: 'https://www.linkedin.com/in/joshua-barney-033b64209/',
             imageUrl: 'josh-profile.png',
         },
+        // Add other team members here
     ];
 
     const TeamMember = ({ name, major, role, linkedin, imageUrl }) => {
         return (
-            <Card style={{ width: '20rem', margin: '1rem', marginTop: '2rem', backgroundColor: 'rgb(43,48,53)', color: 'white', border: '1px solid black' }}>
-                <div style={{ overflow: 'hidden', borderRadius: '50%' }}>
-                    <Card.Img variant="top" src={imageUrl} alt={`Profile of ${name}`} style={{ borderRadius: '50%', width: "18rem", marginTop: "1rem", border: "1px solid black", width: "18rem", height: "18rem", objectFit: 'cover' }} />
+            <Card className="team-member-card">
+                <div className="card-image">
+                    <Card.Img variant="top" src={imageUrl} alt={`Profile of ${name}`} className="card-image" />
                 </div>
                 <Card.Body>
-                    <Card.Title style={{ fontWeight: 'bold' }}>{name}</Card.Title>
+                    <Card.Title className="card-title">{name}</Card.Title>
                     <Card.Text>{`${major}`}</Card.Text>
                     <Card.Text>{`${role}`}</Card.Text>
                     <a href={linkedin} target="_blank" rel="noopener noreferrer" className="btn btn-light" style={{ color: "rgb(80, 150, 250", fontWeight: "bold" }}>

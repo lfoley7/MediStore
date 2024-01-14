@@ -10,16 +10,18 @@ const PrescriptionTimelineChart = () => {
       new Date('2024-01-01'),
       new Date('2024-01-02'),
       new Date('2024-01-03'),
-      new Date('2024-01-04'),
-      new Date('2024-01-05'),
+      new Date('2024-01-04')
     ],
     datasets: [
       {
-        dosage: [10, 15, 20, 18, 25],
+        dosage: [10, 15, 15, 15],
       },
       {
-        dosage: [5, 12, 15, 22, 28],
+        dosage: [5, 12, 12, 12],
       },
+      {
+        dosage: [20, 20, 20, 10],
+      }
     ],
   };
 
