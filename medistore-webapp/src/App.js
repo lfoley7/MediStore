@@ -1,6 +1,5 @@
-import { React, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import medistoreLogo from './medistore-logo.svg';
 import MSNavbar from './msnavbar/MSNavbar';
 import Medications from './medications/Medications';
 import Analytics from './analytics/Analytics';
@@ -10,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
-
   return (
     <div className="App">
       <MSNavbar />

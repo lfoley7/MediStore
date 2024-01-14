@@ -1,9 +1,14 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 html {
-  background: rgb(70, 75, 80);
+  background-color: rgb(190, 195, 200);
 }
 
 .App {
   text-align: center;
+  background-color: rgb(190,195,200);
 }
 
 .App-logo {

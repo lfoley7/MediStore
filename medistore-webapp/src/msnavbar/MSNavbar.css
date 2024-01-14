@@ -1,8 +1,12 @@
 .medistore-logo {
     max-height: 2rem;
-    margin-left: 1rem;
+    margin-right: .5rem;
 }
 
 .dropdown-right {
     margin-right: .0rem;
+}
+
+.nav-link {
+    margin-top: .2rem;
 }

@@ -11,11 +11,11 @@ function MSNavbar() {
     return (
         <div>
             <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark">
-                <a href="#">
-                    <img className="medistore-logo" src={MediStoreLogo} alt="MediStore Logo"></img>
-                </a>
                 <Container fluid>
-                    <Navbar.Brand href="#">MediStore</Navbar.Brand>
+                    <a href="/">
+                        <img className="medistore-logo" src={MediStoreLogo} alt="MediStore Logo"></img>
+                    </a>
+                    <Navbar.Brand href="/">MediStore</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
